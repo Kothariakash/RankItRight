@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Search YouTube</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+   
+  </head>
+  <body>
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">BEHANCE IMAGES</h1>
+      <p class="lead text-muted">Top  results on your search query!</p>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" name="link" class="form-control">
+        </div>
+        <p>
+          <button type="submit" name="submit" value="search" class="btn btn-primary my-2">Get Images</button>
+    </div>
+  </section>
+
+  
+    <div class="container">
+      <div class="row">
+        {% if error %}
+            <p class="text-danger"><strong>Error:</strong> {{ error }}
+        {% endif %}
+        {% for image in images %}
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="card mb-4 shadow-sm">
+            <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ image }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+
+</body>
+</html>

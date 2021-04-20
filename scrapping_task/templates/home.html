@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Search User {% endblock %}
+{% block content %}
+
+        <form action="/search/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="search">Enter a name to search</label>
+                <input type="text" class="form-control" name="search" id="search" aria-describedby="emailHelp" placeholder="Enter name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th> Name </th>
+                    <th> URL </th>
+                    <th> Phone Number </th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for data in datas %}
+                <tr>
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.url }}</td>
+                    <td>{{ data.phone_number }}</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+
